@@ -62,7 +62,8 @@ public class BookAggregate { //Nhận command từ controller
 
 
 
-    //Lấy dữ liệu của event để cập nhật lại thông tin cho BookAggrgate, ghi lại lịch sử của event đã thay đổi trường dữ liệu nào
+    //Lấy dữ liệu của event để cập nhật lại thông tin cho BookAggrgate,
+    //Ghi lại lịch sử của event đã thay đổi trường dữ liệu nào
 
     //ADD BOOK
     @EventSourcingHandler
