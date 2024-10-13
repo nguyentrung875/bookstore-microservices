@@ -85,6 +85,13 @@
             <optional>true</optional>
         </dependency>
 
+
+<!--        Import common service-->
+        <dependency>
+            <groupId>com.trungnguyen</groupId>
+            <artifactId>commonservice</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
     <dependencyManagement>
         <dependencies>
