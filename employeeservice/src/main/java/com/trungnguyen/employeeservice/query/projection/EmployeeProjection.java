@@ -1,5 +1,7 @@
 package com.trungnguyen.employeeservice.query.projection;
 
+import com.trungnguyen.commonservice.model.EmployeeResponseCommonModel;
+import com.trungnguyen.commonservice.query.GetDetailsEmployeeQuery;
 import com.trungnguyen.employeeservice.command.data.Employee;
 import com.trungnguyen.employeeservice.command.data.EmployeeRepository;
 import com.trungnguyen.employeeservice.query.model.EmployeeReponseModel;
@@ -18,6 +20,17 @@ public class EmployeeProjection {
 
     @Autowired
     private EmployeeRepository employeeRepository;
+
+
+    @QueryHandler
+    public EmployeeResponseCommonModel handle(GetDetailsEmployeeQuery getDetailsEmployeeQuery) {
+        EmployeeResponseCommonModel model = new EmployeeResponseCommonModel();
+        Employee employee = employeeRepository.findById(getDetailsEmployeeQuery.getEmployeeId())
+                .orElseThrow(()->new RuntimeException("Employee not found!"));
+        BeanUtils.copyProperties(employee, model);
+
+        return model;
+    }
 
     @QueryHandler
     public EmployeeReponseModel handle(GetEmployeesQuery getEmployeesQuery) {

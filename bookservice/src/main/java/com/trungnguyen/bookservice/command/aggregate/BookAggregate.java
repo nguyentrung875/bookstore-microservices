@@ -6,6 +6,10 @@ import com.trungnguyen.bookservice.command.command.UpdateBookCommand;
 import com.trungnguyen.bookservice.command.event.BookCreatedEvent;
 import com.trungnguyen.bookservice.command.event.BookDeletedEvent;
 import com.trungnguyen.bookservice.command.event.BookUpdatedEvent;
+import com.trungnguyen.commonservice.command.RollBackStatusBookCommand;
+import com.trungnguyen.commonservice.command.UpdateStatusBookCommand;
+import com.trungnguyen.commonservice.events.BookRollBackStatusEvent;
+import com.trungnguyen.commonservice.events.BookUpdateStatusEvent;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -60,6 +64,19 @@ public class BookAggregate { //Nhận command từ controller
         AggregateLifecycle.apply(bookDeletedEvent);
     }
 
+    @CommandHandler
+    public void handle(UpdateStatusBookCommand command) {
+        BookUpdateStatusEvent event = new BookUpdateStatusEvent();
+        BeanUtils.copyProperties(command,event);
+        AggregateLifecycle.apply(event);
+    }
+
+    @CommandHandler
+    public void handle(RollBackStatusBookCommand command) {
+        BookRollBackStatusEvent event = new BookRollBackStatusEvent();
+        BeanUtils.copyProperties(command, event);
+        AggregateLifecycle.apply(event);
+    }
 
 
     //Lấy dữ liệu của event để cập nhật lại thông tin cho BookAggrgate,
@@ -89,4 +106,16 @@ public class BookAggregate { //Nhận command từ controller
         this.bookId = event.getBookId();
     }
 
+
+    @EventSourcingHandler
+    public void on(BookUpdateStatusEvent event) {
+        this.bookId = event.getBookId();
+        this.isReady = event.getIsReady();
+    }
+
+    @EventSourcingHandler
+    public void on(BookRollBackStatusEvent event) {
+        this.bookId = event.getBookId();
+        this.isReady = event.getIsReady();
+    }
 }
