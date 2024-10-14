@@ -2,11 +2,9 @@ package com.trungnguyen.bookservice.command.event;
 
 import com.trungnguyen.bookservice.command.data.Book;
 import com.trungnguyen.bookservice.command.data.BookRepository;
-import com.trungnguyen.commonservice.command.UpdateStatusBookCommand;
 import com.trungnguyen.commonservice.events.BookRollBackStatusEvent;
 import com.trungnguyen.commonservice.events.BookUpdateStatusEvent;
 import org.axonframework.eventhandling.EventHandler;
-import org.hibernate.sql.ast.tree.update.UpdateStatement;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -46,6 +44,7 @@ public class BookEventsHandler {
                 .orElseThrow(()-> new RuntimeException("Book not found!"));
         book.setIsReady(event.getIsReady());
         bookRepository.save(book);
+        System.out.println("ĐÃ TRẢ SÁCH THÀNH CÔNG!");
     }
 
     @EventHandler
