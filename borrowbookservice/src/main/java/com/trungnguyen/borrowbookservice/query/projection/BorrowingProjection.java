@@ -60,9 +60,9 @@ public class BorrowingProjection {
         listEntity.forEach(s ->{
             BorrowingResponseModel model = new BorrowingResponseModel();
             BeanUtils.copyProperties(s, model);
-//            model.setNameBook(queryGateway.query(new GetDetailsBookQuery(model.getBookId()), ResponseTypes.instanceOf(BookResponseCommonModel.class)).join().getName());
-//            EmployeeResponseCommonModel employee = queryGateway.query(new GetDetailsEmployeeQuery(model.getEmployeeId()), ResponseTypes.instanceOf(EmployeeResponseCommonModel.class)).join();
-//            model.setNameEmployee(employee.getFirstName()+" "+employee.getLastName());
+            model.setNameBook(queryGateway.query(new GetDetailsBookQuery(model.getBookId()), ResponseTypes.instanceOf(BookResponseCommonModel.class)).join().getName());
+            EmployeeResponseCommonModel employee = queryGateway.query(new GetDetailsEmployeeQuery(model.getEmployeeId()), ResponseTypes.instanceOf(EmployeeResponseCommonModel.class)).join();
+            model.setNameEmployee(employee.getFirstName()+" "+employee.getLastName());
             list.add(model);
         });
         return list;
