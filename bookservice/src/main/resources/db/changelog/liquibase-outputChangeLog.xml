@@ -1,0 +1,24 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <include file="db/changelog/book-changelog-create .xml"></include>
+
+<!--    <changeSet author="blog" id="DEV-1">-->
+<!--        <createTable tableName="like">-->
+<!--            <column name="id" type="varchar(100)">-->
+<!--                <constraints primaryKey="true" nullable="false"/>-->
+<!--            </column>-->
+<!--            <column name="article_id" type="varchar(255)"/>-->
+<!--            <column name="create_by" type="varchar(255)"/>-->
+<!--            <column name="create_at" type="TIMESTAMP" defaultValueDate="CURRENT_TIMESTAMP"/>-->
+<!--            <column name="modified_by" type="varchar(255)" defaultValue="0"/>-->
+<!--            <column name="modified_at" type="TIMESTAMP"/>-->
+<!--        </createTable>-->
+<!--    </changeSet>-->
+</databaseChangeLog>
